@@ -197,5 +197,25 @@ FactoryBot.define do
     trait :draft_enrichment do
       enrichments { [build(:course_enrichment, :initial_draft, course: nil)] }
     end
+
+    trait :with_vacancies do
+      site_statuses { [create(:site_status, :findable, :full_time_vacancies)] }
+    end
+
+    trait :without_vacancies do
+      site_statuses { [build(:site_status, :findable, :with_no_vacancies)] }
+    end
+
+    trait :part_time do
+      study_mode { :part_time }
+    end
+
+    trait :full_time do
+      study_mode { :full_time }
+    end
+
+    trait :send do
+      is_send { true }
+    end
   end
 end

@@ -6,8 +6,10 @@ module API
       before_action :build_courses
 
       def index
-        course_search = CourseSearchService.call(filter: params[:filter], sort: params[:sort], course_scope: @courses)
+        course_search = CourseSearchService.call(filter: params[:filter], course_scope: @courses)
+        course_search = CourseOrderingService.call(filter: params[:filter], sort: params[:sort], course_scope: course_search)
 
+        # params[:page][:per_page] = 11
         render jsonapi: paginate(course_search),
           fields: fields_param,
           include: params[:include],
