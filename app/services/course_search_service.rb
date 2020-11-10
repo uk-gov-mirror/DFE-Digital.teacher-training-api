@@ -5,7 +5,7 @@ class CourseSearchService
   attr_reader :course_scope
 
   def initialize(filter:, course_scope: Course)
-    @filter = filter
+    @filter = filter || {}
     @course_scope = course_scope
   end
 
@@ -21,11 +21,7 @@ class CourseSearchService
     scope = scope.within(filter[:radius], origin: origin) if locations_filter?
     scope = scope.with_funding_types(funding_types) if funding_types.any?
 
-    if provider_name.present?
-      Course.where(id: scope.select(:id))
-    else
-      scope.distinct
-    end
+    scope
   end
 
 private

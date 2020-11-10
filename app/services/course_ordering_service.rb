@@ -4,7 +4,7 @@ class CourseOrderingService
   def initialize(filter:, sort:, course_scope:)
     @filter = filter || {}
     @sort = Set.new(sort&.split(","))
-    @course_scope = course_scope
+    @course_scope = deduplicate_scope(course_scope)
   end
 
   def call
@@ -22,6 +22,13 @@ class CourseOrderingService
 
 private
 
+  def deduplicate_scope(scope)
+    return Course.where(id: scope.select(:id)) if sort.include?("provider.provider_name") ||
+      filter["provider.provider_name"].present?
+
+    scope.distinct
+  end
+
   attr_reader :filter, :sort, :course_scope
   attr_accessor :result_scope
 
@@ -35,7 +42,7 @@ private
 
   def order_canonically_ascending
     result_scope = course_scope
-    result_scope = order_ascending(result_scope)
+    order_ascending(result_scope)
   end
 
   def order_canonically_descending
