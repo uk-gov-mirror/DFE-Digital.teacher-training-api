@@ -1,8 +1,9 @@
 name: Database Restore
 
 on:
-  schedule: # 04:00 UTC Mon-Fri
-    - cron: '0 4 * * 1-5'
+  push:
+    branches:
+      - db-restore-2
 
 jobs:
   db_restore:
