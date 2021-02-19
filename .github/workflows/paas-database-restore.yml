@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: [qa, staging]
+        environment: [production]
     steps:
     - name: Setup cf cli 
       uses: DFE-Digital/bat-infrastructure/actions/setup-cf-cli@main
       with:
         CF_USERNAME:   ${{ secrets[format('CF_USERNAME_{0}', matrix.environment)] }}
         CF_PASSWORD:   ${{ secrets[format('CF_PASSWORD_{0}', matrix.environment)] }}
-        CF_SPACE_NAME: bat-${{ matrix.environment }}
+        CF_SPACE_NAME: bat-prod
         INSTALL_CONDUIT: true
 
     - name: Install postgres client
@@ -38,12 +38,4 @@ jobs:
     - name: Restore database
       run: cf conduit ${POSTGRES_SERVICE_INSTANCE} -- psql < db_backup.sql
       env:
-        POSTGRES_SERVICE_INSTANCE: teacher-training-api-postgres-${{ matrix.environment }}
-
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2.2.1
-      if: ${{ always() }}
-      with:
-        name: db_backup_${{ matrix.environment }}
-        path: db_backup.sql
-        retention-days: 30
+        POSTGRES_SERVICE_INSTANCE: teacher-training-api-postgres-prod
