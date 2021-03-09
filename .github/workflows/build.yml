@@ -20,5 +20,5 @@ jobs:
         SLACK_ICON_EMOJI: ':github-logo:'
         SLACK_USERNAME: Teacher Training API
         SLACK_TITLE: This is a test alert
-        SLACK_MESSAGE: '<@U0110MC89BJ> Please ignore'
+        SLACK_MESSAGE: '<@S017YB44XB5> Please ignore'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
