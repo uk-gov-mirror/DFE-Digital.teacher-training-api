@@ -106,5 +106,5 @@ jobs:
         SLACK_ICON_EMOJI: ':github-logo:'
         SLACK_USERNAME: Teacher Training API
         SLACK_TITLE: Build failure
-        SLACK_MESSAGE: ':alert: <!channel> Teacher Training API Build failure :sadparrot:'
+        SLACK_MESSAGE: '<!twd-publish-register-devs> Teacher Training API Build failure :sadparrot:'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

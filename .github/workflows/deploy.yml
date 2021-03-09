@@ -141,5 +141,5 @@ jobs:
           SLACK_ICON_EMOJI: ':github-logo:'
           SLACK_USERNAME: Teacher Training API
           SLACK_TITLE: Deploy to ${{ matrix.environment }} Failed
-          SLACK_MESSAGE: ':alert: <!channel> Build failure on ${{ matrix.environment }} :sadparrot:'
+          SLACK_MESSAGE: ':alert: <!twd-publish-register-devs> Build failure on ${{ matrix.environment }} :sadparrot:'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
