@@ -5,8 +5,20 @@ module Support
     end
 
     def show
-      @provider = Provider.find(params[:id])
+      provider
       render layout: "provider_record"
+    end
+
+    def edit
+      provider
+    end
+
+    def update
+      if provider.update(provider_params)
+        redirect_to support_provider_path(provider)
+      else
+        render :edit
+      end
     end
 
   private
@@ -25,6 +37,14 @@ module Support
 
     def filter_params
       params.permit(:text_search, :page, :commit)
+    end
+
+    def provider
+      @provider ||= Provider.find(params[:id])
+    end
+
+    def provider_params
+      params.require(:provider).permit(:provider_name)
     end
   end
 end
