@@ -18,6 +18,10 @@ module FeatureHelpers
       @provider_courses_index_page ||= PageObjects::Support::ProviderCoursesIndex.new
     end
 
+    def users_show_page
+      @users_show_page ||= PageObjects::Support::UserShow.new
+    end
+
     def sign_in_page
       @sign_in_page ||= PageObjects::SignIn.new
     end
