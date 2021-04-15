@@ -30,6 +30,6 @@ feature "Viewing a user" do
   end
 
   def then_i_should_see_a_table_of_providers
-    expect(users_show_page.providers.size).to eq(1)
+    expect(users_show_page.provider_rows.size).to eq(1)
   end
 end
