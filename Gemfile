@@ -41,9 +41,7 @@ gem "jsonapi-rb"
 gem "jsonb_accessor"
 
 # Sending exceptions to sentry
-gem "sentry-ruby"
-gem "sentry-rails"
-gem "sentry-sidekiq"
+gem "sentry-raven"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
@@ -110,6 +108,9 @@ gem "open_api-rswag-api"
 gem "open_api-rswag-ui"
 
 gem "pg_search"
+
+# End-user application performance monitoring
+gem "skylight"
 
 # govuk styling
 gem "govuk-components"

@@ -62,7 +62,7 @@ private
   def rollback_on_error
     yield
   rescue StandardError => e
-    Sentry.capture_exception(e)
+    Raven.capture(e)
     raise ActiveRecord::Rollback
   end
 end
